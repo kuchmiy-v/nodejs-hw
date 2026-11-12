@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
-import dotenv, { config } from 'dotenv';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -17,14 +17,14 @@ app.use(pino());
 // Маршрути для нотаток
 app.get('/notes', (req, res) => {
   res.status(200).json({
-    message: 'Retrivied all notes',
+    message: 'Retrieved all notes',
   });
 });
 
-app.get('/notes/:noteID', (req, res) => {
-  const { noteID } = req.params;
+app.get('/notes/:noteId', (req, res) => {
+  const { noteId } = req.params;
   res.status(200).json({
-    message: `Retrivied note with ID: ${noteID}`,
+    message: `Retrieved note with ID: ${noteId}`,
   });
 });
 
@@ -44,6 +44,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   res.status(500).json({
     message: err.message,
+    error: err.message,
   });
 });
 
